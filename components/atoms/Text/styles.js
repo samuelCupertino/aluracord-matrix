@@ -14,6 +14,7 @@ export const CustomText = styled.p`
   text-align: ${({ align }) => align};
 
   max-width: 100%;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

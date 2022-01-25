@@ -13,7 +13,6 @@ const GlobalStyle = () => (
 );
 
 export default ({ Component, pageProps }) => {
-  console.log("__app.js: component:");
   return (
     <>
       <GlobalStyle />
