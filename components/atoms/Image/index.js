@@ -1,9 +1,5 @@
 import { CustomImage } from "./styles";
 
-export const Image = ({ src, alt, children }) => {
-  return (
-    <CustomImage src={src} alt={alt}>
-      {children}
-    </CustomImage>
-  );
+export const Image = ({ children, ...props }) => {
+  return <CustomImage {...props}>{children}</CustomImage>;
 };

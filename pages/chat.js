@@ -1,6 +1,9 @@
+import { Chat } from "../components/templates/Chat";
+
 export default () => {
-  
   return (
-    <div>Hello World</div>
-  )
-}
+    <>
+      <Chat />
+    </>
+  );
+};

@@ -1,12 +1,10 @@
 import { CardLogin } from "../..";
-import { SpaceBackground } from "../../atoms";
-import { LoginContainer } from "./styles";
+import { Container } from "./styles";
 
 export const Login = () => {
   return (
-    <LoginContainer>
-      <SpaceBackground />
+    <Container>
       <CardLogin />
-    </LoginContainer>
+    </Container>
   );
 };

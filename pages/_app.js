@@ -1,3 +1,5 @@
+import { SpaceBackground } from "../components/atoms";
+
 const GlobalStyle = () => (
   <style global jsx>{`
     * {
@@ -16,6 +18,7 @@ export default ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
+      <SpaceBackground />
       <Component {...pageProps} />
     </>
   );
