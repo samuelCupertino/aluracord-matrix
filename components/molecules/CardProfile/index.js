@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { Text, Image } from "../../atoms";
+import { Text, Image, EyeFacialRecognition } from "../../atoms";
 import { Container } from "./styles";
 
-export const CardProfile = ({ userName }) => {
+export const CardProfile = ({ userName, eyeClosed }) => {
   const userDefault = useMemo(() => ({
     name: "Usuário não encontrado", 
     image: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU"
@@ -11,9 +11,12 @@ export const CardProfile = ({ userName }) => {
   const [timeSearch, setTimeSearch] = useState(null);
 
   const getUserData = useCallback(async (name) => {
-    const userRes = await fetch(`https://api.github.com/users/${name}`);
+    const gitHubUserName = name.trim()
 
-    console.log(userRes);
+    if (!gitHubUserName) return userDefault
+
+    const userRes = await fetch(`https://api.github.com/users/${gitHubUserName}`);
+
     if (!userRes.ok) return userDefault
   
     const userData = await userRes.json();
@@ -42,6 +45,11 @@ export const CardProfile = ({ userName }) => {
   return (
     <Container>
       <Image src={user.image} alt={`Foto de ${user.name}`} />
+      <EyeFacialRecognition 
+        display={eyeClosed=='0%'}
+        closed={eyeClosed} 
+        margin={['auto']}
+      />
       <Text margin={["auto"]} bgColor="neutrals">
         {user.name}
       </Text>
