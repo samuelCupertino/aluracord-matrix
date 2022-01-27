@@ -7,6 +7,6 @@ export const Container = styled.div` {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0.5rem 0 0.5rem 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.25rem;
   border-right: 2px solid ${theme.colors.primary["800"]};
 `;

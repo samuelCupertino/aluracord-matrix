@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import { theme } from "../../../styles/theme";
+import { theme, clockProps } from "../../../styles";
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: ${theme.colors.primary["500"]};
-  border-radius: 0.5rem;
   position: relative;
   cursor: pointer;
-  padding: ${({ padding }) => padding};
+  padding: ${({ padding=[] }) => clockProps(padding)};
   flex-direction: ${({ direction }) => direction};
 
   &:hover::after,

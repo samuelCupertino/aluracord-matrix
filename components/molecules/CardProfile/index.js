@@ -9,6 +9,7 @@ export const CardProfile = ({ userLogin, eyeClosed }) => {
       name: "Usuário não encontrado",
       avatar:
         "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
+      followers: [],
     }),
     []
   );
@@ -40,8 +41,10 @@ export const CardProfile = ({ userLogin, eyeClosed }) => {
     clearTimeout(timeSearch);
 
     const time = setTimeout(async () => {
-      const useData = await getUserData(userLogin);
-      setUser(useData || userDefault);
+      const userData = await getUserData(userLogin);
+      const user = userData || userDefault;
+      setUser(user);
+      localStorage.setItem("@aluraVerso:userData", user);
     }, 750);
 
     setTimeSearch(time);

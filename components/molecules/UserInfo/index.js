@@ -3,19 +3,22 @@ import { getUserData } from "../../../services";
 import { Container } from "./styles";
 import { Image, Wrapper, Text } from "../../atoms";
 
-export const UserInfo = ({ userLogin, reverse, active, ...props }) => {
+export const UserInfo = ({ userData, userLogin, reverse, active, ...props }) => {
   const userDefault = {
-    name: "Usuário teste",
-    login: "usuarioTest",
-    avatar:
-      "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
+    name: "Nome do usuário",
+    login: "loginUsuario",
+    avatar: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
   };
-  const [userData, setUserData] = useState(userDefault);
+  const [user, setUser] = useState(userDefault);
 
   useEffect(async () => {
-    const user = await getUserData(userLogin);
+    if(userData) {
+      setUser(userData);
+      return
+    }
 
-    setUserData(user || userDefault);
+    const newUser = await getUserData(userLogin);
+    setUser(newUser || userDefault);
   }, []);
 
   return (
@@ -24,11 +27,11 @@ export const UserInfo = ({ userLogin, reverse, active, ...props }) => {
       direction={reverse ? "row-reverse" : "row"}
       {...props}
     >
-      <Image src={userData.avatar} alt="foto do usuário logado" width="3rem" />
+      <Image src={user.avatar} alt="foto do usuário logado" width="3rem" />
 
       <Wrapper alignItems={reverse ? "flex-end" : "flex-start"}>
-        <Text fontSize={11}>{userData.name}</Text>
-        <Text fontSize={9}>@{userData.login}</Text>
+        <Text fontSize={11}>{user.name}</Text>
+        <Text fontSize={9}>@{user.login}</Text>
       </Wrapper>
     </Container>
   );

@@ -9,6 +9,7 @@ export const FormLogin = ({ userLogin, setUserLogin, setSubmit }) => {
   const handleSubmit = () => {
     setSubmit(true);
     router.push("/chat");
+    
   };
 
   return (

@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin: 5vh 5vw;
   display: grid;
   grid-template-areas: "header header" "aside main";
-  grid-template-rows: 4rem auto;
+  grid-template-rows: 4rem calc(100% - 4rem);
   grid-template-columns: 15rem auto;
   border: 2px solid ${theme.colors.primary["800"]};
   border-radius: 1rem;
