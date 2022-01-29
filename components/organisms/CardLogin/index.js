@@ -5,12 +5,12 @@ import { CardProfile, FormLogin } from "../../molecules";
 
 export const CardLogin = () => {
   const [userLogin, setUserLogin] = useState("");
-  const [submit, setSubmit] = useState(false);
+  const [checkUser, setCheckUser] = useState(false);
 
   return (
     <Container>
-      <FormLogin {...{ userLogin, setUserLogin, setSubmit }} />
-      <CardProfile userLogin={userLogin} eyeClosed={submit ? "0%" : "100%"} />
+      <FormLogin {...{ userLogin, setUserLogin, setCheckUser }} />
+      <CardProfile {...{ userLogin, setUserLogin, checkUser, setCheckUser }} />
     </Container>
   );
 };

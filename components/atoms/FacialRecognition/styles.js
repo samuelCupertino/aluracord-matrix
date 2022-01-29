@@ -14,7 +14,6 @@ export const Eye = styled.div`
     background-color: white;
     margin: ${({ margin }) => clockProps(margin)};
 
-
     .shut {
         width: calc(var(--size) * 1.5);
         height: calc(var(--size) * 0.8 + 1px);
@@ -27,7 +26,7 @@ export const Eye = styled.div`
         span {
             display: block;
             width: 100%;
-            height: ${({ closed='100%' })=> closed};
+            height: ${({ opened='100%' })=> opened};
             background-color: ${theme.colors.neutrals['800']};
             border-radius: 0 0 60% 60%;
             transition: 1.5s 1s;
@@ -46,11 +45,10 @@ export const Eye = styled.div`
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: ${({ closed='100%' })=> {
-            return closed == '0%' 
-                ? 'translate(-50%, -50%)'
-                : 'translate(-10%, -10%)' 
-        }};
+        transform: ${({ opened='0%' })=> opened == '0%' 
+            ? 'translate(-50%, -50%)'
+            : 'translate(-10%, -10%)' 
+        };
         transition: 1.5s 1s;
     }
 `

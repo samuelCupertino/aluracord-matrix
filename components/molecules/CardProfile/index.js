@@ -1,11 +1,12 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
-import { faceMatch } from '../../../services/FaceApi'
-import { getUserData } from "../../../services/getUserData";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
+import { useRouter } from "next/router";
+import Webcam from "react-webcam";
+import { getUserData, faceMatch } from "../../../services";
 
-import { Text, Image, EyeFacialRecognition } from "../../atoms";
+import { Wrapper, Text, Image, EyeFacialRecognition } from "../../atoms";
 import { Container } from "./styles";
 
-export const CardProfile = ({ userLogin, eyeClosed }) => {
+export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }) => {
   const userDefault = useMemo(
     () => ({
       name: "Usuário não encontrado",
@@ -14,44 +15,69 @@ export const CardProfile = ({ userLogin, eyeClosed }) => {
     }),
     []
   );
-  const [user, setUser] = useState(userDefault);
+  const [userGithub, setUserGithub] = useState(userDefault);
   const [timeSearch, setTimeSearch] = useState(null);
+  const webcamRef = useRef(null);
+  const router = useRouter();
 
   const searchData = useCallback(() => {
-
-    setTimeout(async () => {
-      const res = await faceMatch(
-        'https://avatars.githubusercontent.com/u/88355379?v=4', 
-        `https://pbs.twimg.com/profile_images/930602367887822850/2v0lXfIR_400x400.jpg`
-      )
-      console.log(res)
-    }, 10000)
-      
-
     clearTimeout(timeSearch);
 
     const time = setTimeout(async () => {
       const userData = await getUserData(userLogin);
       const user = userData || userDefault;
-      setUser(user);
-      localStorage.setItem("@aluraVerso:userData", user);
+      setUserGithub(user);
+      // localStorage.setItem("@aluraVerso:userData", user);
     }, 750);
 
     setTimeSearch(time);
   }, [timeSearch, userLogin]);
-
   useEffect(searchData, [userLogin]);
+
+
+  const faceRecognition = useCallback(async () => {
+    setTimeout(async() => {
+      const userImage = webcamRef.current.getScreenshot();
+      const isSamePerson = await faceMatch(userGithub.avatar, userImage)
+      
+      if(!isSamePerson) {
+        setUserLogin('')
+        setCheckUser(false)
+        return
+      }
+
+      router.push("/chat");
+    }, 3000);
+
+  }, [userGithub, webcamRef]);
+  useEffect(()=> checkUser && faceRecognition(), [checkUser]);
+
 
   return (
     <Container>
-      <Image src={user.avatar} alt={`Foto de ${user.name}`} />
+      <Wrapper width={200} height={200} borderRadius={100}>
+        {checkUser 
+          ? (
+            <Webcam 
+              width={270} 
+              mirrored
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+            />
+          )
+          : (
+            <Image src={userGithub.avatar} />
+          )
+        }
+      </Wrapper>
+
       <EyeFacialRecognition
-        display={eyeClosed == "0%"}
-        closed={eyeClosed}
+        display={checkUser}
+        opened={checkUser? '0%': '100%'}
         margin={["auto"]}
       />
       <Text margin={["auto"]} bgColor="neutrals">
-        {user.name}
+        {userGithub.name}
       </Text>
     </Container>
   );

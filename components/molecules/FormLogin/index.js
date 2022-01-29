@@ -1,15 +1,10 @@
-import { useRouter } from "next/router";
-
 import { Title, Text, Input, Button } from "../../atoms";
 import { Container } from "./styles";
 
-export const FormLogin = ({ userLogin, setUserLogin, setSubmit }) => {
-  const router = useRouter();
+export const FormLogin = ({ userLogin, setUserLogin, setCheckUser }) => {
 
   const handleSubmit = () => {
-    setSubmit(true);
-    // router.push("/chat");
-    
+    setCheckUser(true);
   };
 
   return (
