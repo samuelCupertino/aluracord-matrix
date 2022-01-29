@@ -3,7 +3,7 @@ import { getUserData } from "../../../services";
 import { Container } from "./styles";
 import { Image, Wrapper, Text } from "../../atoms";
 
-export const UserInfo = ({ userData, userLogin, reverse, active, ...props }) => {
+export const UserInfo = ({ userData, userLogin, reverse, ...props }) => {
   const userDefault = {
     name: "Nome do usuário",
     login: "loginUsuario",
@@ -23,7 +23,6 @@ export const UserInfo = ({ userData, userLogin, reverse, active, ...props }) => 
 
   return (
     <Container
-      className={active ? "active" : ""}
       direction={reverse ? "row-reverse" : "row"}
       {...props}
     >

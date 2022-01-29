@@ -15,9 +15,14 @@ export const AsideChat = () => {
 
   return (
     <Container>
-      <Scroll>
-        {userData.followers?.map(follower => (
-          <UserInfo key={follower.login} userData={follower} padding={[10, 5]}/>
+      <Scroll scrollBarDir="rtl">
+        {userData.followers?.map((follower, i) => (
+          <UserInfo 
+            key={follower.login} 
+            userData={follower} 
+            padding={[10, 5]}
+            active={i === 0}
+          />
         ))}
 
       </Scroll>

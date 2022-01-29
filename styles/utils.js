@@ -5,3 +5,7 @@ export const clockProps = (props = [], suffix = "px") => {
 
   return cssProps;
 };
+
+export const toAlphaHex = opacity => opacity 
+  ? Math.round(opacity * 15).toString(16).repeat(2)
+  : "";

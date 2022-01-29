@@ -11,8 +11,7 @@ export const Container = styled.div`
   padding: ${({ padding=[] }) => clockProps(padding)};
   flex-direction: ${({ direction }) => direction};
 
-  &:hover::after,
-  &.active::after {
+  &::after {
     --size: 0.55rem;
     content: "";
     width: 0;
@@ -26,6 +25,10 @@ export const Container = styled.div`
     border-color: transparent;
     border-right-color: ${theme.colors.primary["800"]};
 
-    display: ${({ hoverEffect }) => (hoverEffect ? "block" : "none")};
+    display: ${({ active }) => (active ? "block" : "none")};
+  }
+
+  &:hover::after {
+    display: block;
   }
 `;

@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
+import { faceMatch } from '../../../services/FaceApi'
 import { getUserData } from "../../../services/getUserData";
+
 import { Text, Image, EyeFacialRecognition } from "../../atoms";
 import { Container } from "./styles";
 
@@ -7,8 +9,7 @@ export const CardProfile = ({ userLogin, eyeClosed }) => {
   const userDefault = useMemo(
     () => ({
       name: "Usuário não encontrado",
-      avatar:
-        "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
+      avatar: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
       followers: [],
     }),
     []
@@ -16,28 +17,17 @@ export const CardProfile = ({ userLogin, eyeClosed }) => {
   const [user, setUser] = useState(userDefault);
   const [timeSearch, setTimeSearch] = useState(null);
 
-  // const getUserData = useCallback(async name => {
-  //   const gitHubUserLogin = name.trim();
-
-  //   if (!gitHubUserLogin) return userDefault;
-
-  //   const userRes = await fetch(
-  //     `https://api.github.com/users/${gitHubUserLogin}`
-  //   );
-
-  //   if (!userRes.ok) return userDefault;
-
-  //   const userData = await userRes.json();
-
-  //   const newUser = {
-  //     name: userData.name,
-  //     avatar: userData.avatar_url,
-  //   };
-
-  //   return newUser;
-  // }, []);
-
   const searchData = useCallback(() => {
+
+    setTimeout(async () => {
+      const res = await faceMatch(
+        'https://avatars.githubusercontent.com/u/88355379?v=4', 
+        `https://pbs.twimg.com/profile_images/930602367887822850/2v0lXfIR_400x400.jpg`
+      )
+      console.log(res)
+    }, 10000)
+      
+
     clearTimeout(timeSearch);
 
     const time = setTimeout(async () => {

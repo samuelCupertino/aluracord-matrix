@@ -1,17 +1,33 @@
+import { useState } from "react";
+
 import { Container } from "./styles";
+import { Scroll } from '../../atoms'
+import { ChatMessage, ChatInput } from '../../molecules'
 
 export const MainChat = () => {
+  const historicMessages = [
+    {
+      text: "Olá, tudo bem?",
+      author: "user",
+    },
+    {
+      text: "Tudo bem, e você?",
+      author: "me",
+    }
+  ]
+  const [messages, setMessages] = useState(historicMessages)
+
   return (
     <Container>
-      <div className="historic">
-        <div className="message">ola mundo</div>
-        <div className="message">tudo bem?</div>
-        <div className="message user">tudo bem?</div>
-      </div>
-      <div className="input">
-        <input type="text" placeholder="Digite sua mensagem" />
-        <button></button>
-      </div>
+      <Scroll padding={[10, 5, 20, 5]} >
+        {messages.map((message, index) => (
+          <ChatMessage 
+            key={index} 
+            isAuthor={message.author === 'me'}
+          >{message.text}</ChatMessage>
+        ))}
+      </Scroll>
+      <ChatInput messages={messages} setMessages={setMessages} />
     </Container>
   );
 };

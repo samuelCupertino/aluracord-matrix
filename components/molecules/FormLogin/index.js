@@ -8,7 +8,7 @@ export const FormLogin = ({ userLogin, setUserLogin, setSubmit }) => {
 
   const handleSubmit = () => {
     setSubmit(true);
-    router.push("/chat");
+    // router.push("/chat");
     
   };
 
@@ -16,8 +16,14 @@ export const FormLogin = ({ userLogin, setUserLogin, setSubmit }) => {
     <Container>
       <Title align="center">Boas vindas de volta!</Title>
       <Text margin={[0, "auto", 15, "auto"]}>Chat - AluraVerso</Text>
-      <Input value={userLogin} onChange={ev => setUserLogin(ev.target.value)} />
-      <Button onClick={handleSubmit}>Entrar</Button>
+      <Input
+        borderRadius={[5]}
+        value={userLogin} 
+        onChange={ev => setUserLogin(ev.target.value)} />
+      <Button 
+        borderRadius={[5]}
+        onClick={handleSubmit}
+      >Entrar</Button>
     </Container>
   );
 };
