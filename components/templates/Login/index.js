@@ -1,7 +1,8 @@
-import { CardLogin } from "../..";
+import { CardLogin } from "../../organisms";
 import { Container } from "./styles";
 
 export const Login = () => {
+
   return (
     <Container>
       <CardLogin />

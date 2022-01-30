@@ -7,3 +7,4 @@ export * from "./Input";
 export * from "./Button";
 export * from "./FacialRecognition";
 export * from "./Scroll";
+export * from "./Speech";

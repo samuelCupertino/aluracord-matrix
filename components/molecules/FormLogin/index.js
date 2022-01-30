@@ -24,7 +24,9 @@ export const FormLogin = ({ userLogin, setUserLogin, setCheckUser }) => {
       <Button 
         borderRadius={[5]}
         onClick={handleSubmit}
-      >Entrar</Button>
+      >
+        Entrar
+      </Button>
     </Container>
   );
 };

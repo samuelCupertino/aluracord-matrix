@@ -3,17 +3,18 @@ import { useRouter } from "next/router";
 import Webcam from "react-webcam";
 import { getUserData, faceMatch, userLogged } from "../../../services";
 
-import { Wrapper, Text, Image, EyeFacialRecognition } from "../../atoms";
+import { Wrapper, Text, Image, EyeFacialRecognition, Speech } from "../../atoms";
 import { Container } from "./styles";
 
 export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }) => {
   const userDefault = useMemo(() => ({
     name: "Usuário não encontrado",
-    avatar: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
+    avatar: "images/github-avatar.png",
     followers: [],
   }), []);
   const [userGithub, setUserGithub] = useState(userDefault);
   const [timeSearch, setTimeSearch] = useState(null);
+  const [speechText, setSpeechText] = useState('');
   const webcamRef = useRef(null);
   const router = useRouter();
   const { setUserLogged } = userLogged();
@@ -33,6 +34,14 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
 
 
   const faceRecognition = useCallback(async () => {
+    
+    if(!userGithub.avatar.includes('http')) {
+      setCheckUser(false)
+      return
+    };
+
+    setSpeechText('Realizando o reconhecimento facial...');
+
     const time = setInterval(async() => {
       const userImage = webcamRef?.current.getScreenshot();
 
@@ -42,9 +51,15 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
       const isSamePerson = await faceMatch(userGithub.avatar, userImage)
       
       if(isSamePerson) {
+        const userFirstName = userGithub.name.split(' ')[0];
+        setSpeechText(`Identidade confirmada! Seja bem vindo ao aluraverso, ${userFirstName}!`);
+        
         await setUserLogged(userLogin);
-        router.push("/chat");
+        setTimeout(() => router.push("/chat"), 3000); 
+        return
       }
+
+      setSpeechText('Acesso negado, você não é o usuário informado!')
 
       setUserLogin('')
       setCheckUser(false)
@@ -54,24 +69,31 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
       clearInterval(time)
       setUserLogin('')
       setCheckUser(false)
-    }, 60000);
+      // setSpeechText('É necessário que permita o uso da câmera para realizar o reconhecimento facial!')
+    }, 30000);
   }, [userGithub, webcamRef, userLogin]);
   useEffect(()=> checkUser && faceRecognition(), [checkUser]);
 
 
   return (
     <Container>
+      <Speech text={speechText} />
+
       <Wrapper 
-        width={200} 
-        height={200} 
-        borderRadius={[100]}
+        width="100%"
+        borderRadius={['50%']}
+        aspectRatio={1}
+        margin={["auto"]}
+        justifyContent="center"
+        alignItems="center"
         bgColor="neutrals"
         opacity={0.25}
+        style={{aspectRatio: 1}}
       >
         {checkUser 
           ? (
             <Webcam 
-              width={270} 
+              width="140%"
               mirrored
               ref={webcamRef}
               screenshotFormat="image/jpeg"
