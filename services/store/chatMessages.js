@@ -7,19 +7,25 @@ export const chatMessages = () => {
 
     const chatMessages = chatMessagesData.find(message => message.userLogin === userLogin);
 
-    return chatMessages;
+    return chatMessages?.messages || [];
   }
 
   const setChatMessages = (userLogin, messages) => {
     const chatMessagesJson = localStorage.getItem(DB);
     const chatMessagesData = JSON.parse(chatMessagesJson || '[]');
-
-    const newChatMessages = chatMessagesData.map(chatMessage => chatMessage.userLogin === userLogin
-      ? { userLogin: chatMessage.userLogin, messages: [...chatMessage.messages, messages] }
-      : chatMessage
+    const chatContactExist = chatMessagesData.some(chat => chat.userLogin === userLogin);
+ 
+    const addChatMessages = () => [...chatMessagesData, { userLogin, messages: [messages] }]
+    
+    const editeChatMessage = () => chatMessagesData.map(chat => chat.userLogin === userLogin
+      ? { userLogin, messages: [...chat.messages, messages] }
+      : chat
     );
 
+    const newChatMessages = chatContactExist ? editeChatMessage() : addChatMessages();
+
     localStorage.setItem(DB, JSON.stringify(newChatMessages));
+    return newChatMessages;
   }
 
   return {

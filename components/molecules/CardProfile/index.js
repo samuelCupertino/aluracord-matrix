@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/router";
 import Webcam from "react-webcam";
-import { getUserData, faceMatch } from "../../../services";
+import { getUserData, faceMatch, userLogged } from "../../../services";
 
 import { Wrapper, Text, Image, EyeFacialRecognition } from "../../atoms";
 import { Container } from "./styles";
@@ -19,6 +19,7 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
   const [timeSearch, setTimeSearch] = useState(null);
   const webcamRef = useRef(null);
   const router = useRouter();
+  const { setUserLogged } = userLogged();
 
   const searchData = useCallback(() => {
     clearTimeout(timeSearch);
@@ -27,7 +28,6 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
       const userData = await getUserData(userLogin);
       const user = userData || userDefault;
       setUserGithub(user);
-      // localStorage.setItem("@aluraVerso:userData", user);
     }, 750);
 
     setTimeSearch(time);
@@ -40,16 +40,16 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
       const userImage = webcamRef.current.getScreenshot();
       const isSamePerson = await faceMatch(userGithub.avatar, userImage)
       
-      if(!isSamePerson) {
-        setUserLogin('')
-        setCheckUser(false)
-        return
+      if(isSamePerson) {
+        await setUserLogged(userLogin);
+        router.push("/chat");
       }
 
-      router.push("/chat");
+      setUserLogin('')
+      setCheckUser(false)
     }, 3000);
 
-  }, [userGithub, webcamRef]);
+  }, [userGithub, webcamRef, userLogin]);
   useEffect(()=> checkUser && faceRecognition(), [checkUser]);
 
 

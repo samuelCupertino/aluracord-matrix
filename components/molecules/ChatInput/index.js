@@ -1,15 +1,23 @@
 import { useState, useCallback } from "react";
+import { chatMessages, userLogged } from "../../../services";
 
 import { Container } from "./styles";
 import { Input, Button } from "../../atoms";
 
-export const ChatInput = ({ setMessages }) => {
+export const ChatInput = ({ chatContact, messages, setMessages }) => {
   const [messageText, setMessageText] = useState("");
+  const { setChatMessages } = chatMessages();
 
   const handleSend = useCallback((e) => {
     if(e.key === 'Enter' || e.type === 'click') {
-      setMessages(messages => [...messages, { text: messageText, author: 'me' }])
+      if(!messageText.trim()) return
+
+      const newMessage = { text: messageText, author: 'me' }
+
+      setMessages([...messages, newMessage])
       setMessageText('')
+
+      setChatMessages(chatContact.login, newMessage)
     }
   }, [messageText])
 

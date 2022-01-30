@@ -28,7 +28,9 @@ export const Container = styled.div`
     display: ${({ active }) => (active ? "block" : "none")};
   }
 
-  &:hover::after {
-    display: block;
-  }
+  ${({ hoverEffect }) => hoverEffect && `
+    &:hover::after {
+      display: block;
+    }
+  `}
 `;

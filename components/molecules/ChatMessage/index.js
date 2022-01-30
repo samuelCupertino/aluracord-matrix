@@ -13,7 +13,7 @@ export const ChatMessage = ({ children, isAuthor }) => {
         bgOpacity={0.65}
         borderRadius={[13, 0, 13, 13]}
         padding={[8, 12]}
-        margin={[2, 2, 2, 'auto']}
+        margin={[2, 0, 2, 'auto']}
         fontSize={12} 
         maxWidth="min(90%, 40rem)"
       >{children}</Text>

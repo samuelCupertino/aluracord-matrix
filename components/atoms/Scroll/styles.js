@@ -12,6 +12,13 @@ export const Container = styled.div`
   gap: ${({ gap=0 }) => gap}px;
   flex: ${({ flex=1 }) => flex};
   padding: ${({ padding=[] }) => clockProps(padding)};
+  margin: ${({ margin=[] }) => clockProps(margin)};
+
+  border-style: solid;
+  border-color: ${ theme.colors.primary["800"] };
+  border-width: ${({ borderWidth=[0] }) => clockProps(borderWidth)};
+
+
 
   & > * {
     direction: ltr;
@@ -22,16 +29,15 @@ export const Container = styled.div`
   }
 
   &::-webkit-scrollbar {
-    width: 0.25rem;
+    width: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background: ${theme.colors.neutrals["600"] + "aa"};
-    border-radius: 0.25rem;
+    background: ${theme.colors.neutrals["900"] + "aa"};
   }
 
   &::-webkit-scrollbar-thumb {
-    background: ${theme.colors.primary["900"]};
-    border-radius: 0.25rem;
+    background: ${theme.colors.primary["800"]};
+    border-radius: 10px;
   }
 `;
