@@ -6,17 +6,7 @@ import { Scroll } from '../../atoms'
 import { ChatHeader, ChatMessage, ChatInput } from '../../molecules'
 
 export const MainChat = ({ chatContact }) => {
-  const historicMessages = [
-    {
-      text: "Olá, tudo bem?",
-      author: "user",
-    },
-    {
-      text: "Tudo bem, e você?",
-      author: "me",
-    }
-  ]
-  const [messages, setMessages] = useState(historicMessages)
+  const [messages, setMessages] = useState([])
   const { getChatMessages } = chatMessages();
 
   const handleGetChatMessages = useCallback(() => {

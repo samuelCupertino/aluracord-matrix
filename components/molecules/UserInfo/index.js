@@ -9,11 +9,11 @@ export const UserInfo = ({ userData, reverse, ...props }) => {
       direction={reverse ? "row-reverse" : "row"}
       {...props}
     >
-      <Image src={userData.avatar} alt="foto do usuário logado" width="3rem" />
+      {userData.avatar && <Image src={userData.avatar} alt="foto do usuário logado" width="3rem" />}
 
       <Wrapper alignItems={reverse ? "flex-end" : "flex-start"}>
-        <Text fontSize={11}>{userData.name}</Text>
-        <Text fontSize={9}>@{userData.login}</Text>
+        <Text fontSize={11} maxLine={1}>{userData.name || ''}</Text>
+        <Text fontSize={9} maxLine={1}>@{userData.login || ''}</Text>
       </Wrapper>
     </Container>
   );

@@ -7,14 +7,11 @@ import { Wrapper, Text, Image, EyeFacialRecognition } from "../../atoms";
 import { Container } from "./styles";
 
 export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }) => {
-  const userDefault = useMemo(
-    () => ({
-      name: "Usuário não encontrado",
-      avatar: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
-      followers: [],
-    }),
-    []
-  );
+  const userDefault = useMemo(() => ({
+    name: "Usuário não encontrado",
+    avatar: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU",
+    followers: [],
+  }), []);
   const [userGithub, setUserGithub] = useState(userDefault);
   const [timeSearch, setTimeSearch] = useState(null);
   const webcamRef = useRef(null);
@@ -36,8 +33,12 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
 
 
   const faceRecognition = useCallback(async () => {
-    setTimeout(async() => {
-      const userImage = webcamRef.current.getScreenshot();
+    const time = setInterval(async() => {
+      const userImage = webcamRef?.current.getScreenshot();
+
+      if(!userImage) return
+
+      clearInterval(time);
       const isSamePerson = await faceMatch(userGithub.avatar, userImage)
       
       if(isSamePerson) {
@@ -47,15 +48,26 @@ export const CardProfile = ({ userLogin, setUserLogin, checkUser, setCheckUser }
 
       setUserLogin('')
       setCheckUser(false)
-    }, 3000);
+    }, 1000);
 
+    setTimeout(() => {
+      clearInterval(time)
+      setUserLogin('')
+      setCheckUser(false)
+    }, 60000);
   }, [userGithub, webcamRef, userLogin]);
   useEffect(()=> checkUser && faceRecognition(), [checkUser]);
 
 
   return (
     <Container>
-      <Wrapper width={200} height={200} borderRadius={100}>
+      <Wrapper 
+        width={200} 
+        height={200} 
+        borderRadius={[100]}
+        bgColor="neutrals"
+        opacity={0.25}
+      >
         {checkUser 
           ? (
             <Webcam 

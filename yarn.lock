@@ -501,7 +501,7 @@ escape-string-regexp@^1.0.5:
 
 face-api.js@^0.22.2:
   version "0.22.2"
-  resolved "https://registry.yarnpkg.com/face-api.js/-/face-api.js-0.22.2.tgz#5accbf7e53b1569685d116a7e18dbc4800770d39"
+  resolved "https://registry.npmjs.org/face-api.js/-/face-api.js-0.22.2.tgz"
   integrity sha512-9Bbv/yaBRTKCXjiDqzryeKhYxmgSjJ7ukvOvEBy6krA0Ah/vNBlsf7iBNfJljWiPA8Tys1/MnB3lyP2Hfmsuyw==
   dependencies:
     "@tensorflow/tfjs-core" "1.7.0"
@@ -722,7 +722,7 @@ react-dom@^17.0.2:
 
 react-icons@^4.3.1:
   version "4.3.1"
-  resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
   integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
 react-is@17.0.2, react-is@^17.0.1:
@@ -747,7 +747,7 @@ react-ripples@^2.2.1:
 
 react-webcam@^6.0.1:
   version "6.0.1"
-  resolved "https://registry.yarnpkg.com/react-webcam/-/react-webcam-6.0.1.tgz#6f81f9be7b208a351a42af3288ef1149bd1eec36"
+  resolved "https://registry.npmjs.org/react-webcam/-/react-webcam-6.0.1.tgz"
   integrity sha512-QUacokAV3lk2XeIuRWky+ZGFv5vcwrxN634IXdntAt0eRKTl4G/dujbDN/KGizf1i9r/KB6fokqNkOnQ0bbw6g==
 
 react@^17.0.2:

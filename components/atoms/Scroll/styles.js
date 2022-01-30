@@ -3,6 +3,7 @@ import { theme, clockProps } from "../../../styles";
 
 export const Container = styled.div`
   width: 100%;
+  box-sizing: border-box;
   overflow: hidden Scroll;
   padding-left: 0.25rem;
   display: flex;
@@ -38,6 +39,5 @@ export const Container = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: ${theme.colors.primary["800"]};
-    border-radius: 10px;
   }
 `;

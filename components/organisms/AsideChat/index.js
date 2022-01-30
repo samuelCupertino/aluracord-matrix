@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { SiWechat } from 'react-icons/si'
+
 import { userLogged, chatContacts } from "../../../services";
 
 import { Container } from "./styles";
-import { Scroll, Text, Wrapper, Image } from "../../atoms";
+import { Scroll, Text, Wrapper, Icon } from "../../atoms";
 import { UserInfo } from "../../molecules";
 
 export const AsideChat = ({ setChatContact }) => {
@@ -10,31 +12,59 @@ export const AsideChat = ({ setChatContact }) => {
   const { setChatContacts } = chatContacts()
   const [contacts, setContacts] = useState([])
   const [contactSelected, setContactSelected] = useState({})
+  const [isOpenListContacts, setIsOpenListContacts] = useState(true)
   
-  useEffect(async () => {
+  const getContacts = useCallback(async () => {
     const user = await getUserLogged()
     const userContacts = await setChatContacts(user.login)
 
     setContacts(userContacts);
-  }, []);
+  }, [])
+  useEffect(getContacts, []);
 
-  const handleClickContact = (contact) => {
+  const initFirstContact = useCallback(() => {
+    const [ firstContact ] = contacts
+
+    if(!firstContact) return
+
+    setContactSelected(firstContact)
+    setChatContact(firstContact)
+  }, [contacts]);
+
+  useEffect(initFirstContact, [contacts])
+
+  const handleClickContact = useCallback((contact) => {
     setContactSelected(contact)
     setChatContact(contact);
-  };
+    setIsOpenListContacts(false)
+  }, []);
+
 
   return (
-    <Container>
+    <Container isOpen={isOpenListContacts}>
       <Wrapper 
         height={60} 
         bgColor="neutrals"
         bgOpacity={0.5}
         flexDirection="row"
-        justifyContent="center"
         alignItems="center"
       >
-        <Image src="/images/logo.jpeg" alt="logo" width="3rem" />
-        <Text fontSize={14} align="center">AluraVerso - Chat</Text>
+        <Wrapper 
+          onClick={()=> setIsOpenListContacts(!isOpenListContacts)} 
+          cursor="pointer" 
+          width={75} 
+          minWidth={75} 
+          height={60} 
+          justifyContent="center"
+          alignItems="center"
+          borderRadius={[0,0,20,0]}
+          bgColor="primary"
+          bgColorWeight={600}
+          bgOpacity={0.35}
+        >
+          <SiWechat color="white" fontSize={28}/>
+        </Wrapper>
+        {isOpenListContacts && <Text fontSize={14} align="center" maxLine={1}>AluraVerso - Chat</Text>}
       </Wrapper>
 
       <Scroll 

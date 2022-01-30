@@ -4,12 +4,14 @@ import { theme, clockProps, toAlphaHex } from "../../../styles";
 export const CustomText = styled.p`
   text-align: center;
   width: fit-content;
+  word-break: break-word;
   max-width: ${({ maxWidth }) => maxWidth};
   font-size: ${({ fontSize = 10 }) => `${fontSize}pt`};
   text-align: ${({ align }) => align};
   margin: ${({ margin }) => clockProps(margin)};
   padding: ${({ padding = ["3px", "0.5rem"] }) => clockProps(padding)};
   border-radius: ${({ borderRadius = ["1rem"] }) => clockProps(borderRadius)};
+
   color: ${({ color='neutrals', colorWeight=300, opacity=1 }) =>
     theme.colors[color]?.[colorWeight] + toAlphaHex(opacity)};
   background-color: ${({ bgColor, bgColorWeight = 900, bgOpacity }) =>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { userLogged } from '../../../services';
 
-import { UserInfo } from "..";
+import { UserInfo } from "../../molecules";
 import { Container } from "./styles";
 
 export const ChatHeader = ({ chatContact }) => {
@@ -10,13 +10,12 @@ export const ChatHeader = ({ chatContact }) => {
   
   useEffect(() => {
     const user = getUserLogged();
-    console.log(user)
     setUserLoggedData(user);
   }, []);
 
   return (
     <Container>
-      {chatContact && <UserInfo userData={chatContact} />}
+      <UserInfo userData={chatContact} padding={[0,10,0,0]}/>
       <UserInfo userData={userLoggedData} reverse />
     </Container>
   );

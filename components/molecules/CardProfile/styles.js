@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../styles";
+import { theme, toAlphaHex } from "../../../styles";
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-  background: ${theme.colors.neutrals["800"]};
+  background: ${theme.colors.neutrals["999"] + toAlphaHex(0.3)};
   border-radius: 0.5rem;
   border: 1px solid ${theme.colors.neutrals["900"]};
 `;
