@@ -9,3 +9,4 @@ export * from "./FacialRecognition";
 export * from "./Scroll";
 export * from "./Speech";
 export * from "./HorizontalScroll";
+export * from "./Link";

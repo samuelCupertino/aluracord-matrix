@@ -68,7 +68,11 @@ export const MainChatGroup = ({ chatContact }) => {
       <ChatHeader chatContact={chatContact}/>
       <Scroll padding={[10, 5, 20, 5]} autoScroll="bottom" seeMore={handleGetOldMessages}>
         {messages.map((message) => (
-          <ChatMessage message={message} key={message.de + message.created_at} showUserContact/>
+          <ChatMessage 
+            key={message.de + message.created_at} 
+            message={message} 
+            showUserContact
+          />
         ))}
       </Scroll>
       <Stickers 

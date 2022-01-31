@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import { Text, Image, Wrapper } from "../../atoms";
+import { Text, Image, Link } from "../../atoms";
 
 import { userLogged } from "../../../services";
 
@@ -25,18 +25,24 @@ export const ChatMessage = ({ message, showUserContact }) => {
 
   return message.de === userLoggedLogin ? (
     <Container isAuthor>
-      {showUserContact && (<Wrapper
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="flex-end"
-        padding={[0, 0, 10]}
-      >
-        <Text fontSize={14} color="neutrals" colorWeight={800} opacity={0.7}>
-          {message.de}
-        </Text>
-        <Image src={`https://github.com/${message.de}.png`} width={40} borderRadius={['50%']} />
-      </Wrapper>
+      {showUserContact && (
+        <Link
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="flex-end"
+          padding={[0, 0, 10]}
+          margin={[0, 0, 0, "auto"]}
+          width="fit-content"
+          href={`https://github.com/${message.de}`}
+          target="_blanck"
+        >
+          <Text fontSize={14} color="neutrals" colorWeight={800} opacity={0.7}>
+            {message.de}
+          </Text>
+          <Image src={`https://github.com/${message.de}.png`} width={40} borderRadius={['50%']} />
+        </Link>
       )}
+
       <Text color="neutrals" colorWeight="900" opacity={0.85} fontSize={12}>
         {getText(message.texto)}
       </Text>
@@ -54,12 +60,20 @@ export const ChatMessage = ({ message, showUserContact }) => {
     </Container>
   ) : (
     <Container>
-      <Wrapper flexDirection="row" alignItems="center" padding={[0, 0, 10]}>
+      <Link 
+        flexDirection="row" 
+        alignItems="center" 
+        padding={[0, 0, 10]} 
+        margin={[0, "auto", 0, 0]}
+        width="fit-content"
+        href={`https://github.com/${message.de}`}
+        target="_blanck"
+      >
         <Image src={`https://github.com/${message.de}.png`} width={40} borderRadius={['50%']} />
         <Text fontSize={14} color="neutrals" colorWeight={200} opacity={0.7}>
           {message.de}
         </Text>
-      </Wrapper>
+      </Link>
       <Text color="neutrals" colorWeight={100} opacity={0.9} fontSize={12}>
         {getText(message.texto)}
       </Text>

@@ -22,7 +22,7 @@ export const MainChat = ({ chatContact }) => {
       <Scroll padding={[10, 5, 20, 5]} autoScroll="bottom">
         {messages.map((message, index) => (
           <ChatMessage 
-            key={index} 
+            key={message.de + message.created_at} 
             message={message}
           >
             {message.text}
