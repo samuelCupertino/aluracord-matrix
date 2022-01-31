@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme, toAlphaHex } from "../../../styles";
+import { theme } from "../../../styles";
 
 export const Container = styled.div`
   width: 150px;
@@ -12,7 +12,8 @@ export const Container = styled.div`
   border-radius: 50%;
   background: radial-gradient(black, transparent);
   
-  opacity: ${({ isSpeaking }) => isSpeaking ? 1 : 0};
+  opacity: ${({ isSpeaking=false }) => isSpeaking ? 1 : 0};
+  z-index: 999;
   transition: 1s;
   
 

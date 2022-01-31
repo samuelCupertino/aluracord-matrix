@@ -1,19 +1,27 @@
 import { useState, useCallback } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { chatMessages } from "../../../services";
+import { BsSticky } from "react-icons/bs";
+import { chatMessages, userLogged } from "../../../services";
 
 import { Container } from "./styles";
 import { Input, Wrapper } from "../../atoms";
 
-export const ChatInput = ({ chatContact, messages, setMessages }) => {
+export const ChatInput = ({ chatContact, messages, setMessages, setStickersVisibility }) => {
   const [messageText, setMessageText] = useState("");
   const { setChatMessages } = chatMessages();
+  const { getUserLogged } = userLogged();
 
   const handleSend = useCallback((e) => {
     if(e.key === 'Enter' || e.type === 'click') {
       if(!messageText.trim()) return
 
-      const newMessage = { text: messageText, author: 'me' }
+      const user = getUserLogged();
+      
+      const newMessage = { 
+        texto: messageText, 
+        de: user.login, 
+        created_at: new Date().toISOString(),
+      }
 
       setMessages([...messages, newMessage])
       setMessageText('')
@@ -30,6 +38,15 @@ export const ChatInput = ({ chatContact, messages, setMessages }) => {
         onKeyDown={handleSend}
         width="100%"
       />
+      <Wrapper 
+        cursor="pointer"
+        alignItems="center"
+        padding={[10, 15]}
+        justifyContent="center"
+        onClick={() => setStickersVisibility(v => !v)}
+      >
+       <BsSticky fontSize={22} color="white"/>
+      </Wrapper>
       <Wrapper 
         onClick={handleSend}
         cursor="pointer"

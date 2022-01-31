@@ -13,7 +13,8 @@ export const AsideChat = ({ setChatContact }) => {
   const [contacts, setContacts] = useState([])
   const [contactSelected, setContactSelected] = useState({})
   const [isOpenListContacts, setIsOpenListContacts] = useState(true)
-  
+  const groupAluraCord = {name:'AluraCord', login:'', avatar:'images/alura.jpg'}
+
   const getContacts = useCallback(async () => {
     const user = await getUserLogged()
     const userContacts = await setChatContacts(user.login)
@@ -22,22 +23,18 @@ export const AsideChat = ({ setChatContact }) => {
   }, [])
   useEffect(getContacts, []);
 
-  const initFirstContact = useCallback(() => {
-    const [ firstContact ] = contacts
-
-    if(!firstContact) return
-
-    setContactSelected(firstContact)
-    setChatContact(firstContact)
+  const initChatMessages = useCallback(() => {
+    setContactSelected(groupAluraCord)
+    setChatContact(groupAluraCord)
   }, [contacts]);
-
-  useEffect(initFirstContact, [contacts])
+  useEffect(initChatMessages, [contacts])
 
   const handleClickContact = useCallback((contact) => {
     setContactSelected(contact)
     setChatContact(contact);
     setIsOpenListContacts(false)
   }, []);
+
 
 
   return (
@@ -64,7 +61,7 @@ export const AsideChat = ({ setChatContact }) => {
         >
           <SiWechat color="white" fontSize={28}/>
         </Wrapper>
-        {isOpenListContacts && <Text fontSize={14} align="center" maxLine={1}>AluraVerso - Chat</Text>}
+        {isOpenListContacts && <Text fontSize={14} margin={['auto']} maxLine={1}>AluraVerso-Chat</Text>}
       </Wrapper>
 
       <Scroll 
@@ -72,12 +69,20 @@ export const AsideChat = ({ setChatContact }) => {
         borderWidth={[20]} 
         borderWidth={[0, 2, 0, 0]}
       >
+        <UserInfo 
+          userData={groupAluraCord} 
+          padding={[10, 5]}
+          active={groupAluraCord.login === contactSelected.login}
+          onClick={() => handleClickContact(groupAluraCord)}
+          hoverEffect
+        />
+
         {contacts.map((follower) => (
           <UserInfo 
             key={follower.login} 
             userData={follower} 
             padding={[10, 5]}
-            active={contactSelected.login === follower.login}
+            active={follower.login === contactSelected.login}
             onClick={() => handleClickContact(follower)}
             hoverEffect
           />

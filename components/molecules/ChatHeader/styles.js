@@ -10,9 +10,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
+
   @media (max-width: 725px) {
     min-width: 0;
-    & > *:last-child {
+    & > *:last-child > * {
       width: 55px;
     }
   }

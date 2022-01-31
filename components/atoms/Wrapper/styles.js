@@ -16,9 +16,7 @@ export const CustomContainer = styled.div`
   border-radius: ${({ borderRadius=[] }) => clockProps(borderRadius)};
   padding: ${({ padding=[] }) => clockProps(padding)};
   margin: ${({ margin=[] }) => clockProps(margin)};
-  cursor: ${({ cursor }) => cursor};
-
-  
+  cursor: ${({ cursor }) => cursor};  
 
   background-color: ${({ bgColor, bgColorWeight = 900, bgOpacity }) => {
     const color = theme.colors[bgColor]?.[bgColorWeight]

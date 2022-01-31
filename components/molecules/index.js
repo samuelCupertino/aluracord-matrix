@@ -4,3 +4,4 @@ export * from "./UserInfo";
 export * from "./ChatMessage";
 export * from "./ChatInput";
 export * from "./ChatHeader";
+export * from "./Stickers";

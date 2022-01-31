@@ -28,8 +28,13 @@ export const chatMessages = () => {
     return newChatMessages;
   }
 
+  const clearChatMessages = () => {
+    localStorage.removeItem(DB);
+  }
+
   return {
     getChatMessages,
-    setChatMessages
+    setChatMessages,
+    clearChatMessages
   }
 };

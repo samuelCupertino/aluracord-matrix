@@ -8,9 +8,11 @@ export const chatContacts = () => {
     return chatContactsData;
   }
 
-  const setChatContacts = async (userLogin='samuelCupertino') => {
+  const setChatContacts = async (userLogin) => {
     const userFollowersData = await fetch(`https://api.github.com/users/${userLogin}/followers`)
     const userFollowers = await userFollowersData.json();
+
+    if(!userFollowers[0]) return
 
     const contacts = userFollowers.map(follower => ({
       name: follower.login,
@@ -23,8 +25,13 @@ export const chatContacts = () => {
     return contacts;
   }
 
+  const clearChatContacts = () => {
+    localStorage.removeItem(DB);
+  }
+
   return {
     getChatContacts,
-    setChatContacts
+    setChatContacts,
+    clearChatContacts
   }
 };

@@ -23,8 +23,13 @@ export const userLogged = () => {
     return userData;
   }
 
+  const clearUserLogged = () => {
+    localStorage.removeItem(DB);
+  }
+
   return {
     getUserLogged,
-    setUserLogged
+    setUserLogged,
+    clearUserLogged
   }
 };
