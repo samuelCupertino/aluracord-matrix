@@ -1,4 +1,4 @@
-# About This Project ([video](https://www.instagram.com/p/CZX9X8Lt3cM)/[online](https://aluracord-matrix-orcin.vercel.app))
+# About This Project ([online](https://aluracord-matrix-orcin.vercel.app)/[video](https://www.instagram.com/p/CZX9X8Lt3cM))
 <table>
     <tr>
         <td>
