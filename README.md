@@ -35,7 +35,7 @@
           <img src="./public/images/run-chat-responsivity.gif" />
         </td>
         <td>
-            <h2>Chat</h2>
+            <h2>Responsive</h2>
             <ul>
                 <li>Fluid Responsive</li>
                 <li>Grid Layout</li>
