@@ -1,18 +1,67 @@
-# aluracord-matrix
-Projeto desenvolvido durante a imersão React com a @alura @omariosouto @peas.
-
-<div>
-  <h2 width="45%" height="1400px" float="right"></h2>
-  <img width="50%" src="./public/images/run-login-responsivity.gif" />
-  <img width="2%" />
-  <img width="45%" src="./public/images/run-login.gif" />
-  <h2 width="45%" height="1400px" float="right"></h2>
-</div>
+# About This Project ([video](https://www.instagram.com/p/CaHVBMhOL_s))
+<table>
+    <tr>
+        <td>
+          <img src="./public/images/run-login-responsivity.gif" />
+        </td>
+        <td>
+            <h2>Technologies</h2>
+            <ul>
+                <li>Next</li>
+                <li>React</li>
+                <li>Atomic Design</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2>Login</h2>
+            <ul>
+                <li>Optimized Search</li>
+                <li>Facial Recognition</li>
+                <li>Voice Synthesis</li>
+            </ul>
+        </td>
+        <td>
+          <img src="./public/images/run-login.gif" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+          <img src="./public/images/run-chat-responsivity.gif" />
+        </td>
+        <td>
+            <h2>Chat</h2>
+            <ul>
+                <li>Fluid Responsive</li>
+                <li>Grid Layout</li>
+                <li>Flexible Box Layout</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2>Chat</h2>
+            <ul>
+                <li>Text Message</li>
+                <li>Gif Message</li>
+            </ul>
+        </td>
+        <td>
+          <img src="./public/images/run-send-message.gif" />
+        </td>
+    </tr>
+</table>
 
 <br/>
 
-<div>
-  <img src="./public/images/run-chat-responsivity.gif" width="47.5%" />
-  <img width="2%" />
-  <img src="./public/images/run-send-message.gif" width="47.5%" />
-</div>
+## Start Project 
+```
+npm install
+```
+```
+npm run serve
+```
