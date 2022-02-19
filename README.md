@@ -10,6 +10,7 @@
                 <li>Next</li>
                 <li>React</li>
                 <li>Atomic Design</li>
+                <li>Styled Components</li>
                 <li>HTML</li>
                 <li>CSS</li>
                 <li>JavaScript</li>
