@@ -64,5 +64,5 @@
 npm install
 ```
 ```
-npm run serve
+next dev
 ```
