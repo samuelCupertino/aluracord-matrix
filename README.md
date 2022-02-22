@@ -50,7 +50,7 @@
             </ul>
         </td>
         <td>
-          <img src="./public/images/run-send-message.gif" />
+          <img src="./public/images/run-send-message.gif" width="100%" />
         </td>
     </tr>
 </table>
