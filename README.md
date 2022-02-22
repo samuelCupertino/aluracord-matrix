@@ -11,9 +11,7 @@
                 <li>React</li>
                 <li>Atomic Design</li>
                 <li>Styled Components</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
+                <li>HTML, CSS, JS...</li>
             </ul>
         </td>
     </tr>
@@ -60,9 +58,11 @@
 <br/>
 
 ## Start Project 
-```
+```bash
+# install dependencies
 npm install
 ```
-```
+```bash
+# serve with hot reload at localhost:8080
 next dev
 ```
